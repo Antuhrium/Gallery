@@ -1,0 +1,35 @@
+@import "../../styles/index.module.scss";
+
+.loading__img {
+  @include loading-img;
+}
+
+.photoPage__container {
+  position: relative;
+  display: flex;
+  gap: 50px;
+
+  max-width: 1700px;
+  max-height: 600px;
+
+  margin: 100px auto;
+
+  > a {
+    text-decoration: none;
+  }
+}
+
+.photoPage__photo {
+  margin-bottom: 20px;
+  width: 40%;
+  height: max-content;
+  border-radius: 5px;
+}
+
+.photoPage__title {
+  width: 100%;
+  font-family: $fontMain;
+  font-size: $mediumFontSize;
+  color: $black;
+  font-weight: normal;
+}

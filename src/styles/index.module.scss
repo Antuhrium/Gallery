@@ -1,0 +1,58 @@
+// --------- Variables ----------- //
+
+$fontMain: Arial, Helvetica, sans-serif;
+
+$mediumFontSize: 16px;
+$largeFontSize: 24px;
+
+$fontNormal: 400;
+$fontBold: 700;
+
+$black: #222222;
+$grey: #828282;
+$redPrimary: #ff0000;
+$redHover: #ff5f5f;
+
+$duration: 0.1s;
+
+// --------- Mixins ----------- //
+
+@mixin hover-underline($from, $to) {
+  &::after {
+    position: absolute;
+    content: "";
+    width: $from;
+    height: 2px;
+
+    bottom: -5px;
+    left: 0;
+
+    background-color: $black;
+
+    transition: width $duration ease-in-out;
+  }
+
+  &:hover {
+    &::after {
+      width: $to;
+    }
+  }
+}
+
+@mixin loading-img {
+  width: 300px;
+  height: 300px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// --------- App Styles ----------- //
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

@@ -1,0 +1,33 @@
+@import "../../styles/index.module.scss";
+
+.container {
+  width: fit-content;
+  margin: 45px auto 0;
+  padding: 0;
+}
+.list__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 46px;
+
+  list-style-type: none;
+
+  a {
+    text-decoration: none;
+    font-family: $fontMain;
+    font-size: $largeFontSize;
+    color: $grey;
+    padding: 5px 5px;
+    transition: color $duration;
+    font-weight: $fontBold;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  :global(a.active) {
+    color: $black;
+  }
+}

@@ -1,0 +1,31 @@
+@import "../../styles/index.module.scss";
+
+.photoCard__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  min-height: 360px;
+
+  > a {
+    text-decoration: none;
+  }
+}
+
+.photoCard__photo {
+  margin-bottom: 20px;
+  width: 100%;
+  height: max-content;
+  border-radius: 5px;
+}
+
+.photoCard__title {
+  width: 100%;
+  font-family: $fontMain;
+  font-size: $mediumFontSize;
+  color: $black;
+  font-weight: normal;
+
+  @include hover-underline(0, 100%);
+}
