@@ -6,7 +6,8 @@ export const favoriteSlice = createSlice({
   initialState: getLocalStorage("store"),
   reducers: {
     addToFavorite: (state, action) => {
-      state[action.payload.id] = action.payload;
+      console.log(state[action.payload.id], action.payload);
+      state[action.payload] = action.payload;
     },
     removeFromFavorite: (state, action) => {
       delete state[action.payload];

@@ -10,26 +10,64 @@
   gap: 50px;
 
   max-width: 1700px;
-  max-height: 600px;
 
   margin: 100px auto;
+  padding: 0 20px;
 
   > a {
     text-decoration: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    text-align: left;
+    align-items: left;
   }
 }
 
 .photoPage__photo {
   margin-bottom: 20px;
-  width: 40%;
-  height: max-content;
+  width: 50%;
   border-radius: 5px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+}
+
+.photoPage__info {
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: 768px) {
+    text-align: left;
+    align-items: left;
+  }
 }
 
 .photoPage__title {
   width: 100%;
   font-family: $fontMain;
-  font-size: $mediumFontSize;
+  font-size: $largeFontSize;
   color: $black;
-  font-weight: normal;
+  font-weight: $fontBold;
+}
+
+.photoPage__info {
+  font-family: $fontMain;
+  font-weight: $fontNormal;
+  font-size: 20px;
+  margin-top: 10px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
 }

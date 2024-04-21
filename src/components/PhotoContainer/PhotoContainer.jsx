@@ -1,33 +1,24 @@
-import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import styles from "./PhotoContainer.module.scss";
+import paintingApi from "../../paintingApi";
 
 import PhotoCard from "../PhotoCard/PhotoCard";
 import loadingImg from "../../img/loader.svg";
 
-const PhotoContainer = ({ photoInfo }) => {
-  const favoriteData = Object.values(useSelector((state) => state.favorite));
-  const currentPhotoInfo = !photoInfo ? favoriteData : photoInfo;
-
-  const isActive = (id, index) => {
-    if (!photoInfo) {
-      return favoriteData[index].id === id;
-    } else {
-      return !!favoriteData[id];
-    }
-  };
-
+const PhotoContainer = ({ favorites }) => {
   return (
     <div className={styles.photoContainer__container}>
-      {currentPhotoInfo ? (
-        currentPhotoInfo.map((photo, index) => (
+      {paintingApi ? (
+        paintingApi.map((photo) => (
           <PhotoCard
+            favorites={favorites}
             key={Number(photo.id)}
             id={Number(photo.id)}
             title={photo.title}
+            author={photo.author}
+            year={photo.year}
             url={photo.url}
-            isActive={isActive(Number(photo.id), index)}
           />
         ))
       ) : (
@@ -36,8 +27,8 @@ const PhotoContainer = ({ photoInfo }) => {
     </div>
   );
 };
-PhotoContainer.propTypes = {
-  photoInfo: PropTypes.array,
+PhotoCard.propTypes = {
+  favorites: PropTypes.bool,
 };
 
 export default PhotoContainer;

@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import { getApiResource } from "../../utils/network";
+import paintingApi from "../../paintingApi";
 
 import styles from "./PhotoPage.module.scss";
 import loadingImg from "../../img/loader.svg";
@@ -10,59 +9,44 @@ import UiLike from "../../components/UI/UiLike/UiLike";
 
 const PhotoPage = () => {
   const { id } = useParams();
+  const photoInfo = paintingApi[id - 1];
 
-  const [title, setTitle] = useState();
-  const [url, setUrl] = useState();
-
-  const [buttonActive, setButtonActive] = useState(
-    Object.keys(useSelector((state) => state.favorite)).indexOf(id) !== -1
-  );
-
-  useEffect(() => {
-    (async () => {
-      const res = await getApiResource(
-        `https://jsonplaceholder.typicode.com/photos/${id}`
-      );
-
-      if (res) {
-        setTitle(res.title);
-        setUrl(res.url);
-      }
-    })();
-  }, []);
+  const favoriteData = Object.values(useSelector((state) => state.favorite));
+  const [isActive, setIsActive] = useState(favoriteData.includes(Number(id)));
 
   return (
-    <>
-      <div>
-        {title && url ? (
-          <>
-            <div className={styles.photoPage__container}>
-              <UiLike
-                buttonActive={buttonActive}
-                setButtonActive={setButtonActive}
-                id={id}
-                title={title}
-                url={url}
-              />
-              <img
-                className={styles.photoPage__photo}
-                src={url}
-                alt={"Photo: " + title}
-              />
-              <h2 className={styles.photoPage__title}>{title}</h2>
-            </div>
-          </>
-        ) : (
-          <div>
-            <img
-              className={styles.loading__img}
-              src={loadingImg}
-              alt="loading"
-            />
+    <div>
+      {photoInfo.title && photoInfo.url ? (
+        <div className={styles.photoPage__container}>
+          <UiLike
+            id={Number(id)}
+            isActive={isActive}
+            setIsActive={setIsActive}
+          />
+          <img
+            className={styles.photoPage__photo}
+            src={photoInfo.url}
+            alt={"Photo: " + photoInfo.title}
+          />
+          <div className={styles.photoPage__info}>
+            <h2 className={styles.photoPage__title}>
+              Название: {photoInfo.title}
+            </h2>
+            <h3 className={styles.photoPage__info}>
+              Автор: {photoInfo.author}
+            </h3>
+            <span className={styles.photoPage__info}>
+              Год создания: {photoInfo.year}
+            </span>
+            <p className={styles.photoPage__info}>{photoInfo.description}</p>
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      ) : (
+        <div>
+          <img className={styles.loading__img} src={loadingImg} alt="loading" />
+        </div>
+      )}
+    </div>
   );
 };
 

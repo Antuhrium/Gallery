@@ -5,27 +5,49 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
-  min-height: 360px;
+  width: 100%;
+  height: fit-content;
 
   > a {
     text-decoration: none;
   }
+
+  @include hover-underline(0, 100%);
 }
 
 .photoCard__photo {
   margin-bottom: 20px;
   width: 100%;
-  height: max-content;
+  height: 500px;
   border-radius: 5px;
+  object-fit: cover;
+  object-position: top left;
+
+  @media screen and (max-width: 768px) {
+    height: 100%;
+  }
 }
 
 .photoCard__title {
   width: 100%;
   font-family: $fontMain;
+  font-size: $largeFontSize;
+  color: $black;
+  font-weight: $fontBold;
+}
+
+.photoCard__info {
+  margin-bottom: 20px;
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.photoCard__textInfo {
+  font-family: $fontMain;
   font-size: $mediumFontSize;
   color: $black;
-  font-weight: normal;
-
-  @include hover-underline(0, 100%);
 }

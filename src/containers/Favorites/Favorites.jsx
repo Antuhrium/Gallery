@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 
 const Favorites = () => {
   const favoriteData = Object.values(useSelector((state) => state.favorite));
+
   return (
     <div className={styles.favorite__container}>
       {favoriteData.length ? (
-        <PhotoContainer />
+        <PhotoContainer favorites={true} />
       ) : (
         <p className={styles.favorite__text}>
           You don't have favorite paintings..
